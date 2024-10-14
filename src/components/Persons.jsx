@@ -1,11 +1,17 @@
-const Persons = ({ persons }) => {
+const Persons = ({ persons, filterName }) => {
   return (
     <ul>
-      {persons.map((person, i) => (
-        <li key={i}>
-          {person.name} - {person.number}{" "}
-        </li>
-      ))}
+      {persons
+        .filter((person) =>
+          filterName == ""
+            ? person
+            : person.name.toLowerCase().includes(filterName.toLowerCase())
+        )
+        .map((person, i) => (
+          <li key={i}>
+            {person.name} - {person.number}{" "}
+          </li>
+        ))}
     </ul>
   );
 };
