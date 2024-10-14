@@ -7,7 +7,7 @@ const PersonForm = ({
 }) => {
   return (
     <div>
-      <form onSubmit={addPerson}>
+      <form onSubmit={(e) => addPerson(e)}>
         <div>
           <label htmlFor="personName">Name: </label>
           <input

@@ -3,6 +3,7 @@ import personsServices from "./services/personsServices";
 import Persons from "./components/Persons";
 import PersonForm from "./components/PersonForm";
 import Filter from "./components/Filter";
+import SuccessfullMessage from "./components/SucessfullMessage";
 
 function App() {
   const [persons, setPersons] = useState([]);
@@ -10,11 +11,14 @@ function App() {
     personsServices.getAll().then((data) => setPersons(data));
   }, []);
 
+  const [message, setMessage] = useState("");
   const [personName, setPersonName] = useState("");
   const [personNumber, setPersonNumber] = useState("");
   const [filterName, setFilterName] = useState("");
+  const [displayMessage, setDisplayMessage] = useState(false);
 
-  const handleSubmit = () => {
+  const handleSubmit = (e) => {
+    e.preventDefault();
     const newPerson = { name: personName, number: personNumber };
 
     const personFound = persons.find(
@@ -28,6 +32,13 @@ function App() {
       setPersons((previousPersons) => previousPersons.concat(newPerson));
 
       personsServices.create(newPerson);
+
+      setMessage(`Congrats, you have added the number of ${newPerson.name}`);
+      setDisplayMessage(true);
+      setTimeout(() => {
+        setDisplayMessage(false);
+        setMessage(""); // Clear the message after 5 seconds
+      }, 5000);
     } else {
       // IF THE NAME IS ON THE LIST
       // Ask if the user wants to replace the number of the person
@@ -47,6 +58,14 @@ function App() {
             ? person
             : { ...person, number: personNumber }
         );
+        setMessage(
+          `Congrats, you have replaced the number of ${newPerson.name}`
+        );
+        setDisplayMessage(true);
+        setTimeout(() => {
+          setDisplayMessage(false);
+          setMessage(""); // Clear the message after 5 seconds
+        }, 5000);
       }
     }
 
@@ -66,6 +85,8 @@ function App() {
         setPersonNumber={setPersonNumber}
         personNumber={personNumber}
       />
+      <SuccessfullMessage message={message} displayMessage={displayMessage} />
+
       <h2>Numbers</h2>
       <Persons persons={persons} filterName={filterName} />
     </>
