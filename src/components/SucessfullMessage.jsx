@@ -1,9 +1,7 @@
 const SuccessfullMessage = ({ message, displayMessage }) => {
   return (
-    <div>
-      <p
-        className={`success message ${displayMessage == false ? "hidden" : ""}`}
-      >
+    <div className="message-container">
+      <p className={`success-message ${!displayMessage ? "hidden" : ""}`}>
         {message}
       </p>
     </div>

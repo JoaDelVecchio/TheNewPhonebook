@@ -6,11 +6,12 @@ const PersonForm = ({
   personNumber,
 }) => {
   return (
-    <div>
+    <div className="form-container">
       <form onSubmit={(e) => addPerson(e)}>
         <div>
-          <label htmlFor="personName">Name: </label>
+          <label htmlFor="personName">Name:</label>
           <input
+            className="input-field"
             id="personName"
             name="personName"
             type="text"
@@ -19,8 +20,9 @@ const PersonForm = ({
           />
         </div>
         <div>
-          <label htmlFor="personNumber">Number: </label>
+          <label htmlFor="personNumber">Number:</label>
           <input
+            className="input-field"
             id="personNumber"
             name="personNumber"
             type="text"
@@ -28,7 +30,9 @@ const PersonForm = ({
             onChange={(e) => setPersonNumber(e.target.value)}
           />
         </div>
-        <button type="submit">Add Person</button>
+        <button className="submit-button" type="submit">
+          Add Person
+        </button>
       </form>
     </div>
   );

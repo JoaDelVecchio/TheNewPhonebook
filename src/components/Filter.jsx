@@ -1,9 +1,10 @@
 const Filter = ({ filter, setFilter }) => {
   return (
-    <div>
+    <div className="filter-container">
       <input
+        className="filter-input"
         type="text"
-        placeholder="filter by name..."
+        placeholder="Filter by name..."
         value={filter}
         onChange={(e) => setFilter(e.target.value)}
       />

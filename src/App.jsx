@@ -7,6 +7,7 @@ import SuccessfullMessage from "./components/SucessfullMessage";
 
 function App() {
   const [persons, setPersons] = useState([]);
+
   useEffect(() => {
     personsServices.getAll().then((data) => setPersons(data));
   }, []);
@@ -28,9 +29,7 @@ function App() {
     if (!personFound) {
       // IF THE NAME IS NOT ON THE LIST
       // Add new person to the state and to the database.
-
       setPersons((previousPersons) => previousPersons.concat(newPerson));
-
       personsServices.create(newPerson);
 
       setMessage(`Congrats, you have added the number of ${newPerson.name}`);
@@ -42,7 +41,6 @@ function App() {
     } else {
       // IF THE NAME IS ON THE LIST
       // Ask if the user wants to replace the number of the person
-
       if (
         window.confirm(
           "Name already on the list, do you want to replace the number?"
@@ -53,10 +51,12 @@ function App() {
           number: personNumber,
         });
 
-        persons.map((person) =>
-          person.id !== personFound.id
-            ? person
-            : { ...person, number: personNumber }
+        setPersons((persons) =>
+          persons.map((person) =>
+            person.id !== personFound.id
+              ? person
+              : { ...person, number: personNumber }
+          )
         );
         setMessage(
           `Congrats, you have replaced the number of ${newPerson.name}`
@@ -75,7 +75,7 @@ function App() {
   };
 
   return (
-    <>
+    <div className="app-container">
       <h1>The Phonebook</h1>
       <Filter filter={filterName} setFilter={setFilterName} />
       <PersonForm
@@ -89,7 +89,7 @@ function App() {
 
       <h2>Numbers</h2>
       <Persons persons={persons} filterName={filterName} />
-    </>
+    </div>
   );
 }
 
