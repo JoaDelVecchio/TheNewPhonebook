@@ -8,10 +8,9 @@ The Phonebook Application is a web-based tool that allows users to manage contac
 
 ## ⚙️ Installation and Setup
 
-### 1. **Clone the Repository and Initialize the Local Database (JSON Server)**
+### 1. **Open the site and Initialize the Local Database (JSON Server)**
 
-git clone https://github.com/your-username/phonebook-app.git
-cd phonebook-app
+https://oldphonebook.netlify.app/
 
 json-server --watch persons.json --port 30001
 
