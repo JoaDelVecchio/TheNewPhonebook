@@ -79,6 +79,11 @@ label {
   border-radius: 4px;
 }
 
+.unsuccess {
+  color: red;
+  border: solid 3px red;
+}
+
 .hidden {
   display: none;
 }

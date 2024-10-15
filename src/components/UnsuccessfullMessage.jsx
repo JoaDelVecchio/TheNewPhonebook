@@ -1,9 +1,7 @@
 const UnSuccessfullMessage = ({ message }) => {
-  return (
+  return message == "" ? null : (
     <div>
-      <p className={`unsuccess message ${!displayMessage ? "hidden" : ""}`}>
-        {message}
-      </p>
+      <p className={`unsuccess message `}>{message}</p>
     </div>
   );
 };

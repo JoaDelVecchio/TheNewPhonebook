@@ -4,6 +4,7 @@ import Persons from "./components/Persons";
 import PersonForm from "./components/PersonForm";
 import Filter from "./components/Filter";
 import SuccessfullMessage from "./components/SucessfullMessage";
+import UnsuccessfullMessage from "./components/UnsuccessfullMessage";
 
 function App() {
   const [persons, setPersons] = useState([]);
@@ -13,6 +14,7 @@ function App() {
   }, []);
 
   const [message, setMessage] = useState("");
+  const [errorMessage, setErrorMessage] = useState("");
   const [personName, setPersonName] = useState("");
   const [personNumber, setPersonNumber] = useState("");
   const [filterName, setFilterName] = useState("");
@@ -58,21 +60,27 @@ function App() {
           `${personFound.name} is already on the list, do you want to replace the number?`
         )
       ) {
-        personsServices.update(personFound.id, {
-          ...personFound,
-          number: personNumber,
-        });
-
-        setPersons((persons) =>
-          persons.map((person) =>
-            person.id !== personFound.id
-              ? person
-              : { ...person, number: personNumber }
-          )
-        );
-        setMessage(
-          `Congrats, you have replaced the number of ${newPerson.name}`
-        );
+        personsServices
+          .update(personFound.id, {
+            ...personFound,
+            number: personNumber,
+          })
+          .then((ModifiedPerson) => {
+            setPersons(
+              persons.map((person) =>
+                person.id !== ModifiedPerson.id ? person : ModifiedPerson
+              ),
+              setMessage(
+                `Congrats, you have replaced the number of ${newPerson.name}`
+              )
+            );
+          })
+          .catch((error) => {
+            setErrorMessage(`${personFound.name} was already deleted`),
+              setTimeout(() => {
+                setErrorMessage("");
+              }, 5000);
+          });
         setDisplayMessage(true);
         setTimeout(() => {
           setDisplayMessage(false);
@@ -97,6 +105,7 @@ function App() {
         setPersonNumber={setPersonNumber}
         personNumber={personNumber}
       />
+      <UnsuccessfullMessage message={errorMessage} />
       <SuccessfullMessage message={message} displayMessage={displayMessage} />
 
       <h2>Numbers</h2>
