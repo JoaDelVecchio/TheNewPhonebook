@@ -1,15 +1,16 @@
-const Persons = ({ persons, filterName }) => {
+const Persons = ({ persons, filterName, deletePerson }) => {
   return (
     <ul>
       {persons
         .filter((person) =>
           filterName == ""
-            ? person
+            ? true
             : person.name.toLowerCase().includes(filterName.toLowerCase())
         )
         .map((person, i) => (
           <li key={i}>
             {person.name} - {person.number}{" "}
+            <button onClick={() => deletePerson(person.id)}>Delete</button>
           </li>
         ))}
     </ul>

@@ -32,4 +32,14 @@ const create = (newObject) => {
     });
 };
 
-export default { getAll, update, create };
+const getRidOf = (id) => {
+  return axios
+    .delete(`${baseUrl}/${id}`)
+    .then((response) => response.data)
+    .catch((error) => {
+      console.error("There was an error deleting a person", error);
+      throw error;
+    });
+};
+
+export default { getAll, update, create, getRidOf };

@@ -18,6 +18,18 @@ function App() {
   const [filterName, setFilterName] = useState("");
   const [displayMessage, setDisplayMessage] = useState(false);
 
+  const handleDelete = (id) => {
+    if (
+      window.confirm(
+        `Are you sure you want to delete ${
+          persons.find((person) => person.id == id).name
+        }?`
+      )
+    ) {
+      personsServices.getRidOf(id);
+      setPersons(persons.filter((person) => person.id !== id));
+    }
+  };
   const handleSubmit = (e) => {
     e.preventDefault();
     const newPerson = { name: personName, number: personNumber };
@@ -43,7 +55,7 @@ function App() {
       // Ask if the user wants to replace the number of the person
       if (
         window.confirm(
-          "Name already on the list, do you want to replace the number?"
+          `${personFound.name} is already on the list, do you want to replace the number?`
         )
       ) {
         personsServices.update(personFound.id, {
@@ -88,7 +100,11 @@ function App() {
       <SuccessfullMessage message={message} displayMessage={displayMessage} />
 
       <h2>Numbers</h2>
-      <Persons persons={persons} filterName={filterName} />
+      <Persons
+        persons={persons}
+        filterName={filterName}
+        deletePerson={handleDelete}
+      />
     </div>
   );
 }
