@@ -1,6 +1,6 @@
 const Persons = ({ persons, filterName, deletePerson }) => {
   return (
-    <ul>
+    <ul className="personList">
       {persons
         .filter((person) =>
           filterName == ""
@@ -10,7 +10,12 @@ const Persons = ({ persons, filterName, deletePerson }) => {
         .map((person, i) => (
           <li key={i}>
             {person.name} - {person.number}{" "}
-            <button onClick={() => deletePerson(person.id)}>Delete</button>
+            <button
+              className="deleteButtons"
+              onClick={() => deletePerson(person.id)}
+            >
+              Delete
+            </button>
           </li>
         ))}
     </ul>

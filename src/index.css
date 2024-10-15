@@ -1,27 +1,26 @@
 body {
-  background-color: #e5d4b1; /* Light beige background to mimic old paper */
-  font-family: "Courier New", Courier, monospace; /* Monospace font for vintage look */
-  color: #3b3b3b; /* Dark text color */
+  background-color: #e5d4b1;
+  font-family: "Courier New", Courier, monospace;
+  color: #3b3b3b;
   margin: 0;
   padding: 20px;
 }
 
 .book-container {
   display: flex;
-  justify-content: center; /* Center the book page horizontally */
+  justify-content: center;
   align-items: center;
   height: 100vh;
 }
 
 .book-page {
-  background: #ffffff; /* White background for book page */
+  background: #ffffff;
   padding: 20px;
-  border: 1px solid #b0a990; /* Vintage border */
-  border-radius: 8px;
-  box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.2); /* Shadow for depth */
-  max-width: 600px; /* Maximum width of the book page */
-  width: 90%; /* Set width to a percentage to avoid full width */
-  margin: auto; /* Center the book page */
+  border: 1px solid #b0a990;
+  box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.2);
+  max-width: 600px;
+  width: 90%;
+  margin: auto;
   position: relative;
 }
 
@@ -42,14 +41,14 @@ label {
   width: calc(100% - 20px);
   padding: 10px;
   margin: 10px 0;
-  border: 1px solid #b0a990; /* Vintage border for inputs */
+  border: 1px solid #b0a990;
   border-radius: 4px;
-  background: #faf4e2; /* Light background for input fields */
+  background: #faf4e2;
 }
 
 .submit-button {
-  background-color: #b0a990; /* Button background color */
-  color: white; /* Button text color */
+  background-color: #b0a990;
+  color: white;
   padding: 10px 15px;
   border: none;
   border-radius: 4px;
@@ -58,22 +57,30 @@ label {
 }
 
 .submit-button:hover {
-  background-color: #9a8b77; /* Darker shade on hover */
+  background-color: #9a8b77;
 }
 
 .message-container {
   margin: 10px 0;
 }
 
+.personList {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: start;
+  gap: 10px;
+}
+
 .success-message {
-  background: #e2f0d8; /* Light green background for success message */
-  border: 1px solid #a0c1a3; /* Green border */
+  background: #e2f0d8;
+  border: 1px solid #a0c1a3;
   padding: 10px;
   border-radius: 4px;
 }
 
 .hidden {
-  display: none; /* Hide message if not displayed */
+  display: none;
 }
 
 .filter-container {
@@ -86,4 +93,24 @@ label {
   border: 1px solid #b0a990;
   border-radius: 4px;
   background: #faf4e2;
+}
+
+.deleteButtons {
+  background-color: #b0a990;
+  border: none;
+  color: white;
+  padding: 4px 6px;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.deleteButtons:hover {
+  background-color: #ff1a1a;
+  transform: scale(1.05);
+}
+
+.deleteButtons:active {
+  transform: scale(0.95);
+  background-color: #e60000;
 }
